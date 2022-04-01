@@ -3,21 +3,24 @@ import { connectToDb } from "../MongoDb";
 import { Birthday } from "../../types/Birthday";
 
 export class CreateBirthdayService {
-	async execute({ email, name, date }: Birthday): Promise<Birthday | Error> {
-		const { db } = await connectToDb();
-
+	async execute({ email, name, date }: Birthday) {
 		try {
-			const result = await db.collection("birthdays").findOne({ email });
+			const connection = await connectToDb();
+			const db = connection?.db;
 
-			console.log(result);
+			if (db) {
+				const result = await db
+					.collection("birthdays")
+					.findOne({ email });
 
-			if (result) {
-				return new Error("Esse aniversariante já está cadastrado!");
+				if (result) {
+					return new Error("Esse aniversariante já está cadastrado!");
+				}
+
+				db.collection("birthdays").insertOne({ email, name, date });
 			}
-
-			db.collection("birthdays").insertOne({ email, name, date });
 		} catch (e) {
-			return new Error(e);
+			return new Error(`${e}`);
 		}
 	}
 }
