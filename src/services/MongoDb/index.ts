@@ -5,7 +5,7 @@ const { MONGODB_URL, MONGODB_NAME } = process.env;
 
 export async function connectToDb() {
 	try {
-		const client = await MongoClient.connect(MONGODB_URL);
+		const client = await MongoClient.connect(`${MONGODB_URL}`);
 
 		const db = client.db(MONGODB_NAME);
 
