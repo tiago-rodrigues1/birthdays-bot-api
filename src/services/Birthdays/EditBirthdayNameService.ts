@@ -5,6 +5,10 @@ import { Birthday } from "../../types/Birthday";
 export class EditBirthdayNameService {
 	async execute({ email, name }: Birthday) {
 		try {
+			if (!name) {
+				return new Error("Informe o novo nome");
+			}
+
 			const connection = await connectToDb();
 			const db = connection?.db;
 
@@ -13,7 +17,7 @@ export class EditBirthdayNameService {
 					.collection("birthdays")
 					.updateOne({ email }, { $set: { name } });
 
-				if (!result) {
+				if (!result.modifiedCount) {
 					return new Error(
 						"Não foi possível editar este aniversariante"
 					);
