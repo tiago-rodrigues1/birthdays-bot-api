@@ -22,8 +22,10 @@ export class EditBirthdayDateService {
 						"Não foi possível editar a data deste aniversariante"
 					);
 				}
-
-				return result.modifiedCount;
+			} else {
+				return new Error(
+					"Não foi possível editar a data deste aniversariante"
+				);
 			}
 		} catch (e) {
 			return new Error(`${e}`);

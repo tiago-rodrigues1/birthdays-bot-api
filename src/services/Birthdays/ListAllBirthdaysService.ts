@@ -17,9 +17,11 @@ export class ListAllBirthdaysService {
 						"Não foi possível listar os aniversariantes"
 					);
 				}
-			}
 
-			return results;
+				return results;
+			} else {
+				return new Error("Não foi possível listar os aniversariantes");
+			}
 		} catch (e) {
 			return new Error(`${e}`);
 		}

@@ -19,6 +19,10 @@ export class ListBirthdaysByDateService {
 				}
 
 				return result;
+			} else {
+				return new Error(
+					`Não foi possível pegar os aniversariantes de ${date}`
+				);
 			}
 		} catch (e) {
 			return new Error(`${e}`);

@@ -20,6 +20,10 @@ export class DeleteBirthdayService {
 				}
 
 				return result.deletedCount;
+			} else {
+				return new Error(
+					"Não foi possível deletar este aniversariante"
+				);
 			}
 		} catch (e) {
 			return new Error(`${e}`);

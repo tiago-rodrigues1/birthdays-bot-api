@@ -26,6 +26,10 @@ export class CreateBirthdayService {
 						"Não foi possível cadastrar esse aniversariante"
 					);
 				}
+			} else {
+				return new Error(
+					"Não foi possível cadastrar esse aniversariante"
+				);
 			}
 		} catch (e) {
 			return new Error(`${e}`);

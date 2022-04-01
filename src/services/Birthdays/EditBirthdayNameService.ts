@@ -24,6 +24,8 @@ export class EditBirthdayNameService {
 				}
 
 				return result.modifiedCount;
+			} else {
+				return new Error("Não foi possível editar este aniversariante");
 			}
 		} catch (e) {
 			return new Error(`${e}`);
