@@ -4,11 +4,11 @@ import { Birthday } from "../../types/Birthday";
 
 export class ListBirthdaysByDateController {
 	async handle(req: Request, res: Response) {
-		const data = <Birthday>req.body;
+		const { date } = <Birthday>req.body;
 
 		try {
 			const service = new ListBirthdaysByDateService();
-			const result = await service.execute(data);
+			const result = await service.execute(date);
 
 			if (result instanceof Error) {
 				return res
