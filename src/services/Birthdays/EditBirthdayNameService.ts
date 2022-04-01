@@ -1,23 +1,19 @@
 import { connectToDb } from "../MongoDb";
 
 interface EditBirthdayNameServiceProps {
-	email: String;
-	name: String;
+	email: string;
+	newName: string;
 }
 export class EditBirthdayNameService {
-	async execute({ email, name }: EditBirthdayNameServiceProps) {
+	async execute({ email, newName }: EditBirthdayNameServiceProps) {
 		try {
-			if (!name) {
-				return new Error("Informe o novo nome");
-			}
-
 			const connection = await connectToDb();
 			const db = connection?.db;
 
 			if (db) {
 				const result = await db
 					.collection("birthdays")
-					.updateOne({ email }, { $set: { name } });
+					.updateOne({ email }, { $set: { name: newName } });
 
 				if (!result.modifiedCount) {
 					return new Error(

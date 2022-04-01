@@ -7,6 +7,12 @@ export class ListBirthdaysByDateController {
 		const { date } = <Birthday>req.body;
 
 		try {
+			if (!date) {
+				return res
+					.status(400)
+					.json({ succes: false, error: "date is missing" });
+			}
+
 			const service = new ListBirthdaysByDateService();
 			const result = await service.execute(date);
 

@@ -1,7 +1,11 @@
 import { connectToDb } from "../MongoDb";
 
 export class ListBirthdaysByDateService {
-	async execute(date: String) {
+	async execute(date: string) {
+		if (!date) {
+			return new Error("Informe a data!");
+		}
+
 		try {
 			const connection = await connectToDb();
 			const db = connection?.db;

@@ -1,9 +1,13 @@
 import { connectToDb } from "../MongoDb";
 
-import { Birthday } from "../../types/Birthday";
+interface CreateBirthdayServiceProps {
+	email: string;
+	name: string;
+	date: string;
+}
 
 export class CreateBirthdayService {
-	async execute({ email, name, date }: Birthday) {
+	async execute({ email, name, date }: CreateBirthdayServiceProps) {
 		try {
 			const connection = await connectToDb();
 			const db = connection?.db;

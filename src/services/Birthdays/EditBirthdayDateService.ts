@@ -1,24 +1,20 @@
 import { connectToDb } from "../MongoDb";
 
 interface EditBirthdayDateServiceProps {
-	email: String;
-	date: String;
+	email: string;
+	newDate: String;
 }
 
 export class EditBirthdayDateService {
-	async execute({ email, date }: EditBirthdayDateServiceProps) {
+	async execute({ email, newDate }: EditBirthdayDateServiceProps) {
 		try {
-			if (!date) {
-				return new Error("Informe a nova data");
-			}
-
 			const connection = await connectToDb();
 			const db = connection?.db;
 
 			if (db) {
 				const result = await db
 					.collection("birthdays")
-					.updateOne({ email }, { $set: { date } });
+					.updateOne({ email }, { $set: { date: newDate } });
 
 				if (!result.modifiedCount) {
 					return new Error(
