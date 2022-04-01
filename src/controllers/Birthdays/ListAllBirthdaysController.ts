@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { ListAllBirthdaysService } from "../services/Birthdays/ListAllBirthdaysService";
+import { ListAllBirthdaysService } from "../../services/Birthdays/ListAllBirthdaysService";
 
 export class ListAllBirthdaysController {
 	async handle(req: Request, res: Response) {
