@@ -1,9 +1,8 @@
 import { Response, Request } from "express";
 
-import { CreateBirthdayService } from "../services/Birthdays/CreateBirthdayService";
+import { CreateBirthdayService } from "../../services/Birthdays/CreateBirthdayService";
 
-import { Birthday } from "../types/Birthday";
-
+import { Birthday } from "../../types/Birthday";
 export class CreateBirthdayController {
 	async handle(req: Request, res: Response) {
 		const data = <Birthday>req.body;
