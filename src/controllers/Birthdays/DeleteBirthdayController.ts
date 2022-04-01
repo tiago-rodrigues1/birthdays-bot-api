@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
-import { EditBirthdayNameService } from "../../services/Birthdays/EditBirthdayNameService";
+import { DeleteBirthdayService } from "../../services/Birthdays/DeleteBirthdayService";
+
 import { Birthday } from "../../types/Birthday";
 
-export class EditBirthdayNameController {
+export class DeleteBirthdayController {
 	async handle(req: Request, res: Response) {
 		const data = <Birthday>req.body;
 
 		try {
-			const service = new EditBirthdayNameService();
+			const service = new DeleteBirthdayService();
 			const result = await service.execute(data);
 
 			if (result instanceof Error) {

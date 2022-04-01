@@ -17,7 +17,15 @@ export class CreateBirthdayService {
 					return new Error("Esse aniversariante já está cadastrado!");
 				}
 
-				db.collection("birthdays").insertOne({ email, name, date });
+				const insertResponse = await db
+					.collection("birthdays")
+					.insertOne({ email, name, date });
+
+				if (!insertResponse.insertedId) {
+					return new Error(
+						"Não foi possível cadastrar esse aniversariante"
+					);
+				}
 			}
 		} catch (e) {
 			return new Error(`${e}`);

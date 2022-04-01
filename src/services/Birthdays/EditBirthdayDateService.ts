@@ -2,11 +2,11 @@ import { connectToDb } from "../MongoDb";
 
 import { Birthday } from "../../types/Birthday";
 
-export class EditBirthdayNameService {
-	async execute({ email, name }: Birthday) {
+export class EditBirthdayDateService {
+	async execute({ email, date }: Birthday) {
 		try {
-			if (!name) {
-				return new Error("Informe o novo nome");
+			if (!date) {
+				return new Error("Informe a nova data");
 			}
 
 			const connection = await connectToDb();
@@ -15,11 +15,11 @@ export class EditBirthdayNameService {
 			if (db) {
 				const result = await db
 					.collection("birthdays")
-					.updateOne({ email }, { $set: { name } });
+					.updateOne({ email }, { $set: { date } });
 
 				if (!result.modifiedCount) {
 					return new Error(
-						"Não foi possível editar este aniversariante"
+						"Não foi possível editar a data deste aniversariante"
 					);
 				}
 

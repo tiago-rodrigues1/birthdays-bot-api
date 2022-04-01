@@ -2,28 +2,24 @@ import { connectToDb } from "../MongoDb";
 
 import { Birthday } from "../../types/Birthday";
 
-export class EditBirthdayNameService {
-	async execute({ email, name }: Birthday) {
+export class DeleteBirthdayService {
+	async execute({ email }: Birthday) {
 		try {
-			if (!name) {
-				return new Error("Informe o novo nome");
-			}
-
 			const connection = await connectToDb();
 			const db = connection?.db;
 
 			if (db) {
 				const result = await db
 					.collection("birthdays")
-					.updateOne({ email }, { $set: { name } });
+					.deleteOne({ email });
 
-				if (!result.modifiedCount) {
+				if (!result.deletedCount) {
 					return new Error(
-						"Não foi possível editar este aniversariante"
+						"Não foi possível deletar este aniversariante"
 					);
 				}
 
-				return result.modifiedCount;
+				return result.deletedCount;
 			}
 		} catch (e) {
 			return new Error(`${e}`);
