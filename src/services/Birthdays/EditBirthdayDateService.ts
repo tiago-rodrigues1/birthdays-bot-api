@@ -1,9 +1,12 @@
 import { connectToDb } from "../MongoDb";
 
-import { Birthday } from "../../types/Birthday";
+interface EditBirthdayDateServiceProps {
+	email: String;
+	date: String;
+}
 
 export class EditBirthdayDateService {
-	async execute({ email, date }: Birthday) {
+	async execute({ email, date }: EditBirthdayDateServiceProps) {
 		try {
 			if (!date) {
 				return new Error("Informe a nova data");

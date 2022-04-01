@@ -1,9 +1,11 @@
 import { connectToDb } from "../MongoDb";
 
-import { Birthday } from "../../types/Birthday";
-
+interface EditBirthdayNameServiceProps {
+	email: String;
+	name: String;
+}
 export class EditBirthdayNameService {
-	async execute({ email, name }: Birthday) {
+	async execute({ email, name }: EditBirthdayNameServiceProps) {
 		try {
 			if (!name) {
 				return new Error("Informe o novo nome");

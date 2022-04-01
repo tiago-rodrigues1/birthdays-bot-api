@@ -1,9 +1,7 @@
 import { connectToDb } from "../MongoDb";
 
-import { Birthday } from "../../types/Birthday";
-
 export class ListBirthdaysByDateService {
-	async execute({ date }: Birthday) {
+	async execute(date: String) {
 		try {
 			const connection = await connectToDb();
 			const db = connection?.db;
@@ -14,7 +12,7 @@ export class ListBirthdaysByDateService {
 
 				if (!result) {
 					return new Error(
-						"Não foi possível pegar o aniversariante de hoje"
+						`Não foi possível pegar os aniversariantes de ${date}`
 					);
 				}
 
