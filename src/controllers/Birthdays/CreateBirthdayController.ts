@@ -1,16 +1,32 @@
 import { Response, Request } from "express";
-
 import { CreateBirthdayService } from "../../services/Birthdays/CreateBirthdayService";
-
 import { Birthday } from "../../types/Birthday";
+
 export class CreateBirthdayController {
 	async handle(req: Request, res: Response) {
-		const data = <Birthday>req.body;
+		const { email, name, date } = <Birthday>req.body;
 
 		try {
-			const service = new CreateBirthdayService();
+			if (!email) {
+				return res
+					.status(400)
+					.json({ succes: false, error: "email is missing" });
+			}
 
-			const result = await service.execute(data);
+			if (!name) {
+				return res
+					.status(400)
+					.json({ succes: false, error: "name is missing" });
+			}
+
+			if (!date) {
+				return res
+					.status(400)
+					.json({ succes: false, error: "date is missing" });
+			}
+
+			const service = new CreateBirthdayService();
+			const result = await service.execute({ email, name, date });
 
 			if (result instanceof Error) {
 				return res

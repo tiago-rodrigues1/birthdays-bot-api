@@ -1,9 +1,10 @@
 import { connectToDb } from "../MongoDb";
 
-import { Birthday } from "../../types/Birthday";
-
+interface DeleteBirthdayServiceProps {
+	email: String;
+}
 export class DeleteBirthdayService {
-	async execute({ email }: Birthday) {
+	async execute({ email }: DeleteBirthdayServiceProps) {
 		try {
 			const connection = await connectToDb();
 			const db = connection?.db;
@@ -20,6 +21,10 @@ export class DeleteBirthdayService {
 				}
 
 				return result.deletedCount;
+			} else {
+				return new Error(
+					"Não foi possível deletar este aniversariante"
+				);
 			}
 		} catch (e) {
 			return new Error(`${e}`);
