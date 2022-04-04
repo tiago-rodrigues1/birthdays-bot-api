@@ -16,7 +16,7 @@ app.listen(process.env.PORT || 3000, () => {
 	console.log("Server is running");
 
 	const oneMinuteMilliseconds = 1000 * 60;
-	const thirtyMilliseconds = oneMinuteMilliseconds * 30;
+	const tenMinutesMilliseconds = oneMinuteMilliseconds * 10;
 
 	setInterval(async () => {
 		const currentHour = new Date().getHours();
@@ -32,7 +32,7 @@ app.listen(process.env.PORT || 3000, () => {
 				console.log(e);
 			}
 		}
-	}, thirtyMilliseconds);
+	}, tenMinutesMilliseconds);
 });
 
 async function sendHappyBirthdays() {
