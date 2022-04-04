@@ -1,9 +1,7 @@
 import { connectToDb } from "../MongoDb";
 
-import { Birthday } from "../../types/Birthday";
-
 export class ListBirthdaysByDateService {
-	async execute({ date }: Birthday) {
+	async execute(date: string) {
 		try {
 			const connection = await connectToDb();
 			const db = connection?.db;
