@@ -7,7 +7,11 @@ import { EditBirthdayDateController } from "./controllers/Birthdays/EditBirthday
 import { DeleteBirthdayController } from "./controllers/Birthdays/DeleteBirthdayController";
 import { ListBirthdaysByDateController } from "./controllers/Birthdays/ListBirthdaysByDateController";
 
+import { hasPermission } from "./middlewares/HasPermission";
+
 const routes = Router();
+
+routes.use(hasPermission);
 
 routes.post("/birthdays", new CreateBirthdayController().handle);
 routes.post(
