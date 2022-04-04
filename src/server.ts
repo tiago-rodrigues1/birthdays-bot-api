@@ -45,7 +45,7 @@ async function sendHappyBirthdays() {
 
 	try {
 		const service = new ListBirthdaysByDateService();
-		const dbResponse = (await service.execute(todayDate)) || [];
+		const dbResponse = (await service.execute(queryDate)) || [];
 
 		if (dbResponse instanceof Error) {
 			console.log(dbResponse.message);
