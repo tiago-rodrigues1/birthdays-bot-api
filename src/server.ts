@@ -37,6 +37,9 @@ app.listen(process.env.PORT || 3000, () => {
 
 async function sendHappyBirthdays() {
 	const todayDate = new Date().toLocaleDateString("pt-br");
+	const [currentDay, currentMonth] = todayDate.split("/");
+
+	const queryDate = `${currentDay}/${currentMonth}}`;
 
 	let birthdaysMessage: string = "";
 
