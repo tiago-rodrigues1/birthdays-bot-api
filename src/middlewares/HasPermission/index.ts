@@ -5,8 +5,6 @@ interface hasPermissionProps {
 	api_key: string;
 }
 export function hasPermission(req: Request, res: Response, next: NextFunction) {
-	console.log(req.body);
-
 	try {
 		const { api_key } = <hasPermissionProps>req.body;
 		const { API_KEY } = process.env;
