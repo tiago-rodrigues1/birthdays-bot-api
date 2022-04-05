@@ -1,12 +1,9 @@
 import "dotenv/config";
 import { Request, Response, NextFunction } from "express";
 
-interface hasPermissionProps {
-	api_key: string;
-}
 export function hasPermission(req: Request, res: Response, next: NextFunction) {
 	try {
-		const { api_key } = <hasPermissionProps>req.body;
+		const { api_key } = req.headers;
 		const { API_KEY } = process.env;
 
 		if (!api_key) {
