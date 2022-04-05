@@ -6,7 +6,7 @@ name: Send Happy Birthdays
 on:
   # Triggers the workflow every day at 09:00
   schedule:
-    - cron: "40 18 * * *"
+    - cron: "45 18 * * *"
     
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -17,10 +17,13 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Run send happy birthdays job
-        uses: Satak/webrequest-action@v1.2.3
+      - name: HTTP Request Action
+        id: myReq
+        uses: fjogeleit/http-request-action@v1.9.1
         with:
           # Web request URL endpoint
           url: "https://birthdaysbot-api.herokuapp.com/birthdays/send"
           method: GET
           headers: '{"api-key": "${{ secrets.API_KEY }}"}'
+      - name: Show Response
+        run: echo ${{ steps.myReq.outputs.response }}
