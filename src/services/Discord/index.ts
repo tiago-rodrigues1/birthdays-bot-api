@@ -12,7 +12,7 @@ export async function discordMessager(options: WebhookMessageOptions) {
 
 		const response = await webhookClient.send({
 			content: options.content,
-			username: "MyBot",
+			username: "NuncioBot",
 			embeds: options.embeds,
 		});
 
