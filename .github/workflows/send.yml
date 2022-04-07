@@ -15,4 +15,4 @@ jobs:
               with:
                   url: "https://birthdaysbot-api.herokuapp.com/birthdays/send"
                   method: GET
-                  headers: '{"api-key": "${{ secrets.API_KEY }}"}'
+                  headers: '{"api_key": "${{ secrets.API_KEY }}"}'
